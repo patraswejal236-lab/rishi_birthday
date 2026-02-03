@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday My Love ❤️</title>
+
+<style>
+body {
+    margin: 0;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Segoe UI', sans-serif;
+    overflow-x: hidden;
+}
+
+.card {
+    background: rgba(255,255,255,0.25);
+    backdrop-filter: blur(12px);
+    border-radius: 25px;
+    padding: 30px;
+    max-width: 92%;
+    color: #fff;
+    text-align: center;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+}
+
+h1 {
+    font-size: clamp(2em, 6vw, 3em);
+}
+
+h2 {
+    font-weight: normal;
+}
+
+.name {
+    font-weight: bold;
+    color: #ffe6ea;
+}
+
+.heart {
+    font-size: 60px;
+    animation: heartbeat 1.5s infinite;
+}
+
+p {
+    font-size: 1.05em;
+    line-height: 1.7;
+}
+
+#loveText {
+    margin-top: 15px;
+    font-style: italic;
+}
+
+#daysTogether {
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+/* Gallery */
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap: 12px;
+    margin-top: 25px;
+}
+
+.gallery img {
+    width: 100%;
+    height: clamp(90px, 22vw, 140px);
+    object-fit: cover;
+    border-radius: 15px;
+    cursor: pointer;
+}
+
+.signature {
+    margin-top: 25px;
+    font-style: italic;
+}
+
+/* Floating hearts */
+.floating-hearts span {
+    position: fixed;
+    bottom: -20px;
+    font-size: 24px;
+    animation: float 8s infinite;
+    opacity: 0.6;
+}
+
+.floating-hearts span:nth-child(1) { left: 10%; }
+.floating-hearts span:nth-child(2) { left: 30%; animation-delay: 2s; }
+.floating-hearts span:nth-child(3) { left: 60%; animation-delay: 4s; }
+.floating-hearts span:nth-child(4) { left: 80%; animation-delay: 1s; }
+
+@keyframes float {
+    0% { transform: translateY(0); opacity: 0; }
+    20% { opacity: 1; }
+    100% { transform: translateY(-100vh); opacity: 0; }
+}
+
+@keyframes heartbeat {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+    100% { transform: scale(1); }
+}
+
+/* Image modal */
+#imgModal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.9);
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+}
+
+#imgModal img {
+    max-width: 90%;
+    max-height: 90%;
+    border-radius: 20px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="card">
+    <h1>Happy Birthday, in advance 🎂</h1>
+    <h2>My Love, <span class="name">Rishi</span> 💕</h2>
+
+    <div class="heart">❤️</div>
+
+    <p>
+        You are my favorite reason to smile and my safest place to fall.
+    </p>
+
+    <p id="loveText"></p>
+    <div id="daysTogether"></div>
+
+    <!-- PHOTO GALLERY (4 photos) -->
+    <div class="gallery">
+        <img src="photo1.jpg" onclick="openImg(this.src)">
+        <img src="photo2.jpg" onclick="openImg(this.src)">
+        <img src="photo3.jpg" onclick="openImg(this.src)">
+        <img src="photo4.jpg" onclick="openImg(this.src)">
+    </div>
+
+    <p style="margin-top:20px; font-weight:bold;">
+        “I didn’t choose you. My heart did.”
+    </p>
+
+    <div class="signature">
+        Forever yours,<br>
+        Swejal ❤️
+    </div>
+</div>
+
+<!-- Floating Hearts -->
+<div class="floating-hearts">
+    <span>❤️</span>
+    <span>💖</span>
+    <span>💕</span>
+    <span>💘</span>
+</div>
+
+<!-- Image Modal -->
+<div id="imgModal" onclick="this.style.display='none'">
+    <img id="fullImg">
+</div>
+
+<!-- Background Music -->
+<audio id="bgm" autoplay loop muted>
+    <source src="romantic.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+// Typing love letter
+const text = "From the moment you came into my life, everything changed for the better. You are my today, my tomorrow, and my forever ❤️";
+let i = 0;
+function typeWriter() {
+    if (i < text.length) {
+        document.getElementById("loveText").innerHTML += text.charAt(i);
+        i++;
+        setTimeout(typeWriter, 50);
+    }
+}
+typeWriter();
+
+// Days together counter
+const startDate = new Date("2024-03-13"); // CHANGE THIS DATE
+const today = new Date();
+const diffTime = Math.abs(today - startDate);
+const days = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+document.getElementById("daysTogether").innerHTML =
+    "💞 Together for " + days + " beautiful days";
+
+// Image modal function
+function openImg(src) {
+    document.getElementById("fullImg").src = src;
+    document.getElementById("imgModal").style.display = "flex";
+}
+
+// Auto-unmute music on first tap
+document.body.addEventListener('click', () => {
+    const audio = document.getElementById('bgm');
+    audio.muted = false;
+    audio.play();
+}, { once: true });
+</script>
+
+</body>
+</html>
